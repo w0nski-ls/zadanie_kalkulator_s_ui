@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="calc">
+<head>
+<title>zadanie_kalkulator_s</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="calculator.js"></script>
+</head>
+
+<body>
+	<div ng-controller="CalculatorController">
+		<form ng-submit="calculate()">
+			<label for="number-input">Stawka dzienna brutto</label> <input
+				type="text" id="number-input" ng-model="form.number" value="0" />
+			<button type="submit">Przelicz</button>
+		</form>
+
+		<div ng-show="!isErrorMessage">
+			<ul>
+				<li ng-repeat="calcResult in calcResults"><span>[{{calcResult.currency}}]:
+				</span> <span>{{calcResult.result | number:2 }}</span> <span
+					ng-show="calcResult.message != null">{{calcResult.message}}</span></li>
+			</ul>
+		</div>
+		<div ng-show="isErrorMessage">{{errorMessage}}</div>
+	</div>
+</body>
+</html>
